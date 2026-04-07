@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { InfographicCard } from "@/components/infographic-card";
 
 type Metric = { id: string; name: string };
 
@@ -34,6 +35,7 @@ export default function ProgressPage() {
 
   return (
     <section>
+      <p className="text-xs uppercase tracking-[0.2em] text-muted mb-1">Metrics intelligence</p>
       <h1 className="text-4xl mb-4">Progress Tracker</h1>
       <div className="flex gap-2 mb-5">
         <input className="border rounded p-2 bg-white" placeholder="Metric name" value={name} onChange={(e) => setName(e.target.value)} />
@@ -41,9 +43,20 @@ export default function ProgressPage() {
       </div>
       <ul className="space-y-2">
         {metrics.map((metric) => (
-          <li key={metric.id} className="bg-white rounded p-3 shadow-sm">{metric.name}</li>
+          <li key={metric.id} className="north-card p-3">{metric.name}</li>
         ))}
       </ul>
+      <div className="mt-4">
+        <InfographicCard
+          title="Metric Portfolio"
+          subtitle="Infographic"
+          items={metrics.slice(0, 6).map((metric, i) => ({
+            label: metric.name,
+            value: metrics.length - i,
+            accent: i % 2 ? "#2f6f63" : "#b18a3d",
+          }))}
+        />
+      </div>
     </section>
   );
 }

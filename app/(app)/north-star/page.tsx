@@ -3,6 +3,7 @@
 import { jsPDF } from "jspdf";
 import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { InfographicCard } from "@/components/infographic-card";
 
 type NorthStar = {
   id?: string;
@@ -43,10 +44,20 @@ export default function NorthStarPage() {
 
   return (
     <section className="space-y-4">
+      <p className="text-xs uppercase tracking-[0.2em] text-muted">Vision canvas</p>
       <h1 className="text-4xl">North Star One-Pager</h1>
       <input className="w-full border rounded p-2 bg-white" value={form.title} onChange={(e) => setForm((s) => ({ ...s, title: e.target.value }))} />
       <textarea className="w-full border rounded p-2 bg-white min-h-24" placeholder="Mission statement" value={form.mission} onChange={(e) => setForm((s) => ({ ...s, mission: e.target.value }))} />
       <textarea className="w-full border rounded p-2 bg-white min-h-60 font-mono text-sm" placeholder='{"identity":"","roadmap":[]}' value={form.vision_data} onChange={(e) => setForm((s) => ({ ...s, vision_data: e.target.value }))} />
+      <InfographicCard
+        title="Strategy Completeness"
+        subtitle="Infographic"
+        items={[
+          { label: "Title", value: form.title ? 1 : 0 },
+          { label: "Mission", value: form.mission ? 1 : 0, accent: "#2f6f63" },
+          { label: "Vision Data", value: form.vision_data ? 1 : 0, accent: "#3f5c88" },
+        ]}
+      />
       <div className="flex gap-2">
         <button className="rounded bg-zinc-900 text-white px-4 py-2" onClick={save}>Save</button>
         <button className="rounded border px-4 py-2 bg-white" onClick={exportPdf}>Export PDF</button>

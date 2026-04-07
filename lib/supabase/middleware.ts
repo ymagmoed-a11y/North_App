@@ -27,6 +27,7 @@ export async function updateSession(request: NextRequest) {
   const authPage = pathname === "/login" || pathname === "/signup";
   const protectedPage =
     pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/onboarding") ||
     pathname.startsWith("/north-star") ||
     pathname.startsWith("/life-layers") ||
     pathname.startsWith("/execution") ||

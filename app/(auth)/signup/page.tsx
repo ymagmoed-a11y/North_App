@@ -16,12 +16,12 @@ export default function SignupPage() {
     setError(null);
     const { error } = await createClient().auth.signUp({ email, password });
     if (error) setError(error.message);
-    else router.push("/dashboard");
+    else router.push("/onboarding");
   }
 
   return (
-    <div className="min-h-screen grid place-items-center">
-      <form onSubmit={onSubmit} className="w-full max-w-md rounded-lg bg-white p-8 shadow">
+    <div className="min-h-screen grid place-items-center bg-background">
+      <form onSubmit={onSubmit} className="w-full max-w-md north-card p-8">
         <h1 className="text-3xl mb-6">Create account</h1>
         <input className="w-full mb-3 border p-2 rounded" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <input className="w-full mb-3 border p-2 rounded" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />

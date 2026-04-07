@@ -25,19 +25,20 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen grid grid-cols-[240px_1fr]">
-      <aside className="border-r border-zinc-200 bg-white p-6">
-        <h1 className="text-2xl mb-6 text-gold">North</h1>
+    <div className="min-h-screen grid grid-cols-[260px_1fr]">
+      <aside className="border-r bg-[#f6f1e7] p-6">
+        <h1 className="text-3xl mb-1 text-gold">North</h1>
+        <p className="text-xs uppercase tracking-[0.16em] text-muted mb-6">Personal Operating System</p>
         <nav className="space-y-2">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className={clsx(
-                "block rounded-md px-3 py-2 text-sm",
+                "block rounded-md px-3 py-2 text-sm border",
                 pathname === item.href
-                  ? "bg-zinc-900 text-white"
-                  : "text-zinc-600 hover:bg-zinc-100"
+                  ? "bg-[#191714] text-[#f7f1e6] border-[#191714]"
+                  : "text-[#5f584f] bg-white hover:bg-[#f1ece1]"
               )}
             >
               {item.label}
@@ -46,12 +47,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </nav>
         <button
           onClick={logout}
-          className="mt-8 rounded-md bg-zinc-900 px-3 py-2 text-sm text-white"
+          className="mt-8 rounded-md bg-[#191714] px-3 py-2 text-sm text-[#f7f1e6]"
         >
           Logout
         </button>
       </aside>
-      <main className="p-8">{children}</main>
+      <main className="p-8 bg-background">{children}</main>
     </div>
   );
 }

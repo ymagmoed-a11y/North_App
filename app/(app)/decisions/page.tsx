@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { calculateAlignmentScore, getRecommendation } from "@/lib/decision";
 import { createClient } from "@/lib/supabase/client";
+import { InfographicCard } from "@/components/infographic-card";
 
 type Decision = { id: string; description: string; alignment_score: number; recommendation: string };
 
@@ -31,8 +32,9 @@ export default function DecisionsPage() {
 
   return (
     <section>
+      <p className="text-xs uppercase tracking-[0.2em] text-muted mb-1">Decision quality</p>
       <h1 className="text-4xl mb-4">Decision Filter</h1>
-      <div className="bg-white rounded p-4 shadow-sm mb-5 space-y-2">
+      <div className="north-card p-4 mb-5 space-y-2">
         <textarea className="w-full border rounded p-2" placeholder="Opportunity description" value={description} onChange={(e) => setDescription(e.target.value)} />
         <div className="grid grid-cols-3 gap-2">
           <input className="border rounded p-2" type="number" value={timeCost} onChange={(e) => setTimeCost(Number(e.target.value))} />
@@ -43,12 +45,23 @@ export default function DecisionsPage() {
       </div>
       <ul className="space-y-2">
         {items.map((item) => (
-          <li key={item.id} className="bg-white rounded p-3 shadow-sm">
+          <li key={item.id} className="north-card p-3">
             <p>{item.description}</p>
             <p className="text-sm text-muted">Score: {item.alignment_score} - {item.recommendation}</p>
           </li>
         ))}
       </ul>
+      <div className="mt-4">
+        <InfographicCard
+          title="Recommendation Mix"
+          subtitle="Infographic"
+          items={[
+            { label: "Proceed", value: items.filter((d) => d.recommendation === "Proceed").length },
+            { label: "Consider", value: items.filter((d) => d.recommendation === "Consider").length, accent: "#2f6f63" },
+            { label: "Reject", value: items.filter((d) => d.recommendation === "Reject").length, accent: "#893f3f" },
+          ]}
+        />
+      </div>
     </section>
   );
 }
