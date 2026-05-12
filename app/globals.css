@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f2efe7;
-  --surface: #ffffff;
-  --foreground: #171613;
+  --background: #fdf8f8;
+  --surface: #fdf8f8;
+  --foreground: #1c1b1b;
   --muted: #777067;
-  --gold: #b18a3d;
-  --line: #dfd7c8;
+  --gold: #C5A059;
+  --line: #e5e2e1;
   --ink-soft: #2b2924;
 }
 
@@ -18,8 +18,6 @@
   --color-gold: var(--gold);
   --color-line: var(--line);
   --color-ink-soft: var(--ink-soft);
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-playfair);
 }
 
 body {
